@@ -1,8 +1,10 @@
 package tests;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.github.javafaker.Faker;
 
 import pages.AccountCreationPage;
@@ -17,6 +19,7 @@ public class TestScript extends TestBase {
 	MyCreatedAccountPage mycreatedaccountpageObject;
 	Faker fakedata = new Faker();
 	String Email = fakedata.internet().emailAddress();
+	
 	String FirstName = fakedata.name().firstName();
 	String LastName = fakedata.name().lastName();
 	String Password = fakedata.number().digits(8).toString();
@@ -36,8 +39,11 @@ public class TestScript extends TestBase {
 	@Test (dependsOnMethods = {"NavigateToMyAccount"})
 	public void NavigateToAccountCreation() throws InterruptedException 
 	{
+		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		Email = Email.substring(0, Email.indexOf("@")) + "_" + timeStamp + Email.substring(Email.indexOf("@"));
 		myaccountObject = new MyAccountPage(driver);
 		myaccountObject.RegisteringEmail(Email);
+		System.out.println(Email);
 	}
 
 	@Test (dependsOnMethods = {"NavigateToAccountCreation"})
