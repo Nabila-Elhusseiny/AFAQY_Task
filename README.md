@@ -7,7 +7,7 @@ This is a test suite written in Java designed to automate sign up form for a Web
 
 The test suite is designed with page object model (POM). Test runs using testNG
 
-.
+
 
 ## Functionalities and Web Elements tested
 
